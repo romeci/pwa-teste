@@ -1,0 +1,28 @@
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js')
+          .then((registration) => {
+              console.log('Service Worker registrado com sucesso!', registration);
+          })
+          .catch((error) => {
+              console.error('Falha ao registrar o Service Worker:', error);
+          });
+  });
+}
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  const promptEvent = event;
+
+  // Exibir mensagem nativa para instalar o aplicativo
+  if (confirm('Você gostaria de instalar o aplicativo?')) {
+      promptEvent.prompt();
+      promptEvent.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+              console.log('Usuário aceitou instalar o aplicativo');
+          } else {
+              console.log('Usuário rejeitou instalar o aplicativo');
+          }
+      });
+  }
+});
