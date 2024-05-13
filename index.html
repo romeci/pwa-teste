@@ -3,13 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste PWA</title>
-    <link rel="manifest" href="manifest.json?v=4">
+    <title>Meu PWA</title>
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <h1>Teste Progressive Web App 4</h1>
-    <p>Bem-vindo ao teste PWA!</p>
+    <h1>Meu Progressive Web App</h1>
+    <p>Bem-vindo ao meu PWA!</p>
 
-    <script src="script.js?v=4"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js?v=1')
+                    .then((registration) => {
+                        console.log('Service Worker registrado com sucesso!', registration);
+                    })
+                    .catch((error) => {
+                        console.error('Falha ao registrar o Service Worker:', error);
+                    });
+            });
+        }
+
+        window.addEventListener('beforeinstallprompt', (event) => {
+            event.preventDefault();
+            const promptEvent = event;
+
+            const isInstalled = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+
+            // Exibir mensagem nativa para instalar o aplicativo apenas se não estiver instalado
+            if (!isInstalled) {
+                if (confirm('Você gostaria de instalar o aplicativo?')) {
+                    promptEvent.prompt();
+                    promptEvent.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('Usuário aceitou instalar o aplicativo');
+                        } else {
+                            console.log('Usuário rejeitou instalar o aplicativo');
+                        }
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 </html>
