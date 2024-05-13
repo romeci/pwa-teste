@@ -15,7 +15,7 @@
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('service-worker.js?v=1')
                     .then((registration) => {
-                       alert('Service Worker registrado com sucesso!', registration);
+                       console.log('Service Worker registrado com sucesso!', registration);
                     })
                     .catch((error) => {
                         console.error('Falha ao registrar o Service Worker:', error);
@@ -34,6 +34,7 @@
                 if (confirm('Você gostaria de instalar o aplicativo?')) {
                     promptEvent.prompt();
                     promptEvent.userChoice.then((choiceResult) => {
+                      alert(choiceResult);
                         if (choiceResult.outcome === 'accepted') {
                            alert('Usuário aceitou instalar o aplicativo');
                         } else {
