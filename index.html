@@ -33,12 +33,14 @@
             if (!isInstalled) {
                 if (confirm('Você gostaria de instalar o aplicativo?')) {
                     promptEvent.prompt();
+
+                    // Adicionar um listener para o evento de aceitar a instalação
                     promptEvent.userChoice.then((choiceResult) => {
-                      alert(choiceResult);
                         if (choiceResult.outcome === 'accepted') {
-                           alert('Usuário aceitou instalar o aplicativo');
+                            // Se o usuário aceitou a instalação, chamar prompt() novamente
+                            promptEvent.prompt();
                         } else {
-                           alert('Usuário rejeitou instalar o aplicativo');
+                            alert('Usuário rejeitou instalar o aplicativo');
                         }
                     });
                 }
