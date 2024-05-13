@@ -15,7 +15,7 @@
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('service-worker.js?v=1')
                     .then((registration) => {
-                        console.log('Service Worker registrado com sucesso!', registration);
+                        alert('Service Worker registrado com sucesso!', registration);
                     })
                     .catch((error) => {
                         console.error('Falha ao registrar o Service Worker:', error);
@@ -31,7 +31,7 @@
         });
 
         window.addEventListener('appinstalled', (event) => {
-            console.log('O aplicativo foi instalado');
+            alert('O aplicativo foi instalado');
         });
     </script>
 </body>
