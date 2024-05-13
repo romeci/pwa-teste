@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [
+      { "src": "/*.{css,js,png,jpg,jpeg,gif,bitmap,webp,svg,json,html}", "use": "@vercel/static" }
+  ],
+  "build": {
+    "env": {
+      "NOW_PHP_DEBUG": "0"
+    }
+  }
+}

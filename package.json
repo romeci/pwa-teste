@@ -1,0 +1,36 @@
+{
+  "name": "pwateste",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "*",
+    "@babel/preset-env": "*",
+    "autoprefixer": "*",
+    "esm": "*",
+    "gulp": "*",
+    "gulp-cli": "*",
+    "gulp-babel": "*",
+    "gulp-concat": "*",
+    "gulp-htmlmin": "*",
+    "gulp-minify": "*",
+    "gulp-minify-css": "*",
+    "gulp-postcss": "*",
+    "gulp-sass": "*",
+    "gulp-uglify": "*",
+    "gulp-watch": "*",
+    "sass": "*"
+  },
+  "dependencies": {
+    "g": "^2.0.1",
+    "postcss": "^8.4.38"
+  }
+}
