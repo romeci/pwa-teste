@@ -15,7 +15,7 @@
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('service-worker.js?v=1')
                     .then((registration) => {
-                        alert('Service Worker registrado com sucesso!', registration);
+                       alert('Service Worker registrado com sucesso!', registration);
                     })
                     .catch((error) => {
                         console.error('Falha ao registrar o Service Worker:', error);
@@ -25,13 +25,23 @@
 
         window.addEventListener('beforeinstallprompt', (event) => {
             event.preventDefault();
+            const promptEvent = event;
 
-            // Exibir mensagem nativa para instalar o aplicativo
-            event.prompt();
-        });
+            const isInstalled = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
 
-        window.addEventListener('appinstalled', (event) => {
-            alert('O aplicativo foi instalado');
+            // Exibir mensagem nativa para instalar o aplicativo apenas se não estiver instalado
+            if (!isInstalled) {
+                if (confirm('Você gostaria de instalar o aplicativo?')) {
+                    promptEvent.prompt();
+                    promptEvent.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                           alert('Usuário aceitou instalar o aplicativo');
+                        } else {
+                           alert('Usuário rejeitou instalar o aplicativo');
+                        }
+                    });
+                }
+            }
         });
     </script>
 </body>
