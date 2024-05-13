@@ -25,9 +25,23 @@
 
         window.addEventListener('beforeinstallprompt', (event) => {
             event.preventDefault();
+            const promptEvent = event;
 
-            // Exibir mensagem nativa para instalar o aplicativo
-            event.prompt();
+            const isInstalled = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+
+            // Exibir mensagem nativa para instalar o aplicativo apenas se não estiver instalado
+            if (!isInstalled) {
+                if (confirm('Você gostaria de instalar o aplicativo?')) {
+                    promptEvent.prompt();
+                    promptEvent.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('Usuário aceitou instalar o aplicativo');
+                        } else {
+                            console.log('Usuário rejeitou instalar o aplicativo');
+                        }
+                    });
+                }
+            }
         });
     </script>
 </body>
