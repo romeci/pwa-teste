@@ -37,14 +37,14 @@ window.addEventListener('beforeinstallprompt', (event) => {
           promptEvent.prompt();
           promptEvent.userChoice.then((choiceResult) => {
               if (choiceResult.outcome === 'accepted') {
-                  console.log('Usuário aceitou instalar o aplicativo');
+                  alert('Usuário aceitou instalar o aplicativo');
 
                   // Download e instalação do aplicativo
                   promptEvent.userChoice.then(() => {
-                      console.log('Iniciando download e instalação do aplicativo');
+                      alert('Iniciando download e instalação do aplicativo');
                   });
               } else {
-                  console.log('Usuário rejeitou instalar o aplicativo');
+                  alert('Usuário rejeitou instalar o aplicativo');
               }
           });
       }
