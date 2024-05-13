@@ -10,19 +10,43 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+// window.addEventListener('beforeinstallprompt', (event) => {
+//   event.preventDefault();
+//   const promptEvent = event;
+
+//   // Exibir mensagem nativa para instalar o aplicativo
+//   if (confirm('Você gostaria de instalar o aplicativo?')) {
+//       promptEvent.prompt();
+//       promptEvent.userChoice.then((choiceResult) => {
+//           if (choiceResult.outcome === 'accepted') {
+//               console.log('Usuário aceitou instalar o aplicativo');
+//           } else {
+//               console.log('Usuário rejeitou instalar o aplicativo');
+//           }
+//       });
+//   }
+// });
+
 window.addEventListener('beforeinstallprompt', (event) => {
   event.preventDefault();
   const promptEvent = event;
 
   // Exibir mensagem nativa para instalar o aplicativo
-  if (confirm('Você gostaria de instalar o aplicativo?')) {
-      promptEvent.prompt();
-      promptEvent.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-              console.log('Usuário aceitou instalar o aplicativo');
-          } else {
-              console.log('Usuário rejeitou instalar o aplicativo');
-          }
-      });
+  if (promptEvent.prompt) {
+      if (confirm('Você gostaria de instalar o aplicativo?')) {
+          promptEvent.prompt();
+          promptEvent.userChoice.then((choiceResult) => {
+              if (choiceResult.outcome === 'accepted') {
+                  console.log('Usuário aceitou instalar o aplicativo');
+              } else {
+                  console.log('Usuário rejeitou instalar o aplicativo');
+              }
+          });
+      }
+  } else {
+      alert('Para instalar o aplicativo, acesse as configurações do navegador.');
   }
 });
+
+
+
