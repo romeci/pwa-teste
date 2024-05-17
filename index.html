@@ -23,17 +23,19 @@
             });
         }
 
+        let deferredPrompt;
+
         window.addEventListener('beforeinstallprompt', (event) => {
             // event.preventDefault();
-            const promptEvent = event;
+            deferredPrompt = event;
 
             const isInstalled = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
 
             // Exibir mensagem nativa para instalar o aplicativo apenas se não estiver instalado
             if (!isInstalled) {
                 if (confirm('Você gostaria de instalar o aplicativo?')) {
-                    promptEvent.prompt();
-                    promptEvent.userChoice.then((choiceResult) => {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
                       alert(choiceResult);
                         if (choiceResult.outcome === 'accepted') {
                            alert('Usuário aceitou instalar o aplicativo');
