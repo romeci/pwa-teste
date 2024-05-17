@@ -24,7 +24,7 @@
         }
 
         window.addEventListener('beforeinstallprompt', (event) => {
-            event.preventDefault();
+            // event.preventDefault();
             const promptEvent = event;
 
             const isInstalled = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
