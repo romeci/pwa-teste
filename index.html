@@ -34,18 +34,6 @@
 
             if (!isInstalled) {
                 document.getElementById('installButton').style.display = 'block';
-                if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('Usuário aceitou instalar o aplicativo');
-                    } else {
-                        console.log('Usuário rejeitou instalar o aplicativo');
-                    }
-                    deferredPrompt = null;
-                    document.getElementById('installButton').style.display = 'none';
-                });
-            }
             }
         });
 
