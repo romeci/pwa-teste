@@ -13,31 +13,7 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// self.addEventListener('install', (event) => {
-//   console.log('Service Worker instalado');
-// });
-
-// self.addEventListener("activate", (event) => {
-//   const cacheWhitelist = [CACHE_NAME];
-//   event.waitUntil(
-//     caches.keys().then((cacheNames) => {
-//       return Promise.all(
-//         cacheNames.map((cacheName) => {
-//           if (cacheWhitelist.indexOf(cacheName) === -1) {
-//             return caches.delete(cacheName);
-//           }
-//         })
-//       );
-//     })
-//   );
-// });
-
-// self.addEventListener('activate', (event) => {
-//   console.log('Service Worker ativado');
-// });
-
 self.addEventListener('fetch', (event) => {
-  console.log('Requisição de rede:', event.request.url);
   event.respondWith(
       caches.match(event.request)
           .then((response) => {
